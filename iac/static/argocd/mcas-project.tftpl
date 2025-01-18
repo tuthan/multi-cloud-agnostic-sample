@@ -1,0 +1,68 @@
+apiVersion: argoproj.io/v1alpha1
+kind: AppProject
+metadata:
+  name: mcas
+  namespace: argocd
+  # Finalizer that ensures that project is not deleted until it is not referenced by any application
+  finalizers:
+    - resources-finalizer.argocd.argoproj.io
+spec:
+  # Project description
+  description: MCAS Project
+
+  # Allow manifests to deploy from any Git repos
+  sourceRepos:
+    - "git@github.com:tuthan/multi-cloud-agnostic-sample.git"
+    - "https://charts.bitnami.com/bitnami"
+    - "https://mongodb.github.io/helm-charts"
+    - "https://charts.jetstack.io"
+
+  destinations:
+    - namespace: "argocd"
+      server: https://kubernetes.default.svc
+      name: ""
+    - namespace: "application"
+      server: https://kubernetes.default.svc
+      name: ""
+    - namespace: "mongodb"
+      server: https://kubernetes.default.svc
+      name: ""
+    - namespace: "kube-system"
+      server: https://kubernetes.default.svc
+      name: ""
+    - namespace: "cert-manager"
+      server: https://kubernetes.default.svc
+      name: ""
+
+  # Deny all cluster-scoped resources from being created, except for Namespace
+  clusterResourceWhitelist:
+    - group: "*"
+      kind: Namespace
+    - group: "*"
+      kind: ClusterRole
+    - group: "*"
+      kind: ClusterRoleBinding
+    - group: "*"
+      kind: ValidatingWebhookConfiguration
+    - group: "*"
+      kind: CustomResourceDefinition
+    - group: "*"
+      kind: APIService
+
+  # Allow all namespaced-scoped resources to be created, except for ResourceQuota, LimitRange, NetworkPolicy
+  namespaceResourceBlacklist:
+    - group: ""
+      kind: ResourceQuota
+    - group: ""
+      kind: LimitRange
+    - group: ""
+      kind: NetworkPolicy
+
+  # Enables namespace orphaned resource monitoring.
+  orphanedResources:
+    warn: false
+
+  # By default, apps may sync to any cluster specified under the `destinations` field, even if they are not
+  # scoped to this project. Set the following field to `true` to restrict apps in this cluster to only clusters
+  # scoped to this project.
+  permitOnlyProjectScopedClusters: false

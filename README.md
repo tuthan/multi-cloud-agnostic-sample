@@ -80,8 +80,28 @@ To test locally:
    ```bash
    minikube start
    ```
-2. Apply configurations and deploy.
-
+2. Apply configurations and deploy using tofu.
+   ```bash
+   chmod +x tofu.sh
+   #Run plan
+   ./tofu.sh -v envs/local.tfvars -t module.argocd
+   #Apply
+   ./tofu.sh -v envs/local.tfvars -t module.argocd -a true
+   #Apply all if argocd already installed
+   ./tofu.sh -v envs/local.tfvars -a true
+   ```
+3. Apply configurations and deploy using terraform via makefile.
+   ```bash
+   #Deploy argocd
+   make VAR_FILE=envs/local.tfvars TARGET=module.argocd
+   #Deploy all if argocd already installed
+   make VAR_FILE=envs/local.tfvars
+   ```
+4. Access argocd
+   ```bash
+   kubectl port-forward svc/argocd-server -n argocd 8080:80
+   kubectl -n argocd get secret argocd-initial-admin-secret -o jsonpath="{.data.password}" | base64 -d; echo
+   ```
 ---
 
 ## 🌐 **Multi-Cloud Support**  
