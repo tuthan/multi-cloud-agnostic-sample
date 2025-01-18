@@ -51,31 +51,11 @@ This project aims to showcase how to design and deploy a multi-cloud agnostic so
 ### **1. Clone the Repository**  
 ```bash
 git clone https://github.com/tuthan/multi-cloud-agnostic-sample.git
-cd multi-cloud-agnostic-sample
+cd multi-cloud-agnostic-sample/iac
 ```
 
-### **2. Initialize Terraform**  
-Navigate to the Terraform directory and initialize the configuration:  
-```bash
-cd terraform
-terraform init
-```
+### **2. Local Testing with Minikube**  
 
-### **3. Provision Infrastructure**  
-Run Terraform to provision the required infrastructure:  
-```bash
-terraform apply
-```
-
-### **4. Deploy to Kubernetes using Helm**  
-Switch to the Kubernetes directory and apply Helm charts:  
-```bash
-cd ../k8s
-helm install <release-name> ./charts
-```
-
-### **5. Local Testing with Minikube**  
-To test locally:  
 1. Start Minikube:  
    ```bash
    minikube start
@@ -109,6 +89,7 @@ To test locally:
 ### **1. GCP**  
 - Configure `google` provider in Terraform.  
 - Deploy to GKE (Google Kubernetes Engine).  
+- Karpenter provider is not yet supported on GKE
 
 ### **2. Azure**  
 - Configure `azurerm` provider in Terraform.  
