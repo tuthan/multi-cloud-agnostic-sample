@@ -1,0 +1,28 @@
+redis-ha:
+  enabled: ${ha_enabled}
+
+controller:
+  replicas: 1
+
+server:
+  replicas: %{ if ha_enabled }2%{ else }1%{ endif }
+
+repoServer:
+  replicas: %{ if ha_enabled }2%{ else }1%{ endif }
+
+applicationSet:
+  replicas: %{ if ha_enabled }2%{ else }1%{ endif }
+
+configs:
+  params:
+    server.insecure: ${server_insecure}
+
+  cm:
+    create: true
+    admin.enabled: true
+    application.instanceLabelKey: argocd.argoproj.io/instance
+    exec.enabled: false
+    server.rbac.log.enforce.enable: false
+    timeout.hard.reconciliation: 0s
+    timeout.reconciliation: 180s
+    url: 'https://${argocd_host}'
