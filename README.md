@@ -35,38 +35,7 @@ This project aims to showcase how to design and deploy a multi-cloud agnostic so
 
 ## 🖼️ **High-Level Architecture**  
 
-```plaintext
-+------------------------+
-|                        |
-|      Terraform         |
-|  (Infra Provisioning)  |
-|                        |
-+------------------------+
-          |
-          v
-+------------------------+
-|                        |
-|      Kubernetes        |
-|   (Orchestration)      |
-|                        |
-+------------------------+
-          |
-          v
-+------------------------+
-|                        |
-|         Argocd         |
-|       (CD tool)        |
-|                        |
-+------------------------+
-          |
-          v
-+------------------------+
-|                        |
-|         Helm           |
-| (App Template & Mgmt)|
-|                        |
-+------------------------+
-```
+![Alt text](diagrams/Cloud_Agnostic.png?raw=true "Diagram")
 
 ---
 
