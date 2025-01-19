@@ -23,3 +23,13 @@ services:
     valueBranch: main
     yamlPath: mongodb/
     syncWave: "-1"
+  mongodb-sample-app:
+    fullName: mdb-sample-app
+    argocdProject: mcas
+    repoBranch: main
+    repoUrl: https://github.com/tuthan/argocd-app-templates.git
+    svcNamespace: mongodb
+    valueRepoUrl: https://github.com/tuthan/multi-cloud-agnostic-sample.git
+    valueBranch: main
+    yamlPath: mdb-sample-app/
+    syncWave: "1"
