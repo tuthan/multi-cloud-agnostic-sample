@@ -3,7 +3,7 @@ cloud:
 enabled: true
 appsFolder: k8s
 services:
-  mongodb-operator:
+  mongodb-operator-app:
     fullName: mongodb-operator
     argocdProject: mcas
     repoBranch: main
@@ -13,7 +13,7 @@ services:
     valueBranch: main
     yamlPath: mongodb-operator/
     syncWave: "-5"
-  mongodb:
+  mongodb-app:
     fullName: mongodb
     argocdProject: mcas
     repoBranch: main
