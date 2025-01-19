@@ -1,0 +1,28 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: mcas-app
+  namespace: argocd
+  finalizers:
+    - resources-finalizer.argocd.argoproj.io
+spec:
+  destination:
+    name: ""
+    namespace: argocd
+    server: 'https://kubernetes.default.svc'
+  sources:
+  - repoURL: 'https://github.com/tuthan/argocd-app-templates.git'
+    targetRevision: "main"
+    path: app
+    helm:
+      valueFiles:
+      - $values/app/values.yaml
+  - repoURL: 'https://github.com/tuthan/multi-cloud-agnostic-sample.git'
+    targetRevision: "main"
+    ref: values
+  project: mcas
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+      allowEmpty: true
