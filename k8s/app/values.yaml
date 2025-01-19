@@ -4,7 +4,7 @@ enabled: true
 appsFolder: k8s
 services:
   mongodb-operator-app:
-    fullName: mongodb-operator
+    fullName: mongodb-operator-app
     argocdProject: mcas
     repoBranch: main
     repoUrl: https://github.com/tuthan/argocd-app-templates.git
@@ -14,7 +14,7 @@ services:
     yamlPath: mongodb-operator/
     syncWave: "-5"
   mongodb-app:
-    fullName: mongodb
+    fullName: mongodb-app
     argocdProject: mcas
     repoBranch: main
     repoUrl: https://github.com/tuthan/argocd-app-templates.git
