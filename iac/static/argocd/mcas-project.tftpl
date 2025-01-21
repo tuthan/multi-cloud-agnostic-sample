@@ -35,6 +35,9 @@ spec:
     - namespace: "cert-manager"
       server: https://kubernetes.default.svc
       name: ""
+    - namespace: "crossplane-system"
+      server: https://kubernetes.default.svc
+      name: ""
 
   # Deny all cluster-scoped resources from being created, except for Namespace
   clusterResourceWhitelist:
