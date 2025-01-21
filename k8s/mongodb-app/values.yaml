@@ -1,2 +1,2 @@
 deploy:
-  mdbPassword: "Y2hhbmdlbWU="
+  mdbPassword: "Y2hhbmdlbWU=" #Dummy password, in real environment we will not store password like this.

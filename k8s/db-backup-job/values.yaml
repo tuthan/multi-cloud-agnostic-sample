@@ -1,0 +1,2 @@
+deploy:
+  mdbConnectionSecret: "mongodb-admin-my-user"

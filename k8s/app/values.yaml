@@ -33,3 +33,13 @@ services:
     valueBranch: main
     yamlPath: mdb-sample-app/
     syncWave: "1"
+  db-backup-job:
+    fullName: db-backup-job
+    argocdProject: mcas
+    repoBranch: main
+    repoUrl: https://github.com/tuthan/argocd-app-templates.git
+    svcNamespace: mongodb
+    valueRepoUrl: https://github.com/tuthan/multi-cloud-agnostic-sample.git
+    valueBranch: main
+    yamlPath: db-backup/
+    syncWave: "1"
